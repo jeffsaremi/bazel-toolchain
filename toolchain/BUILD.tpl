@@ -39,10 +39,10 @@ filegroup(
 cc_toolchain_suite(
     name = "toolchain",
     toolchains = {
-        "arm|clang": ":cc-clang-linux-arm",
+        "aarch64|clang": ":cc-clang-linux-aarch64",
         "k8|clang": ":cc-clang-linux",
         "darwin|clang": ":cc-clang-darwin",
-        "arm": ":cc-clang-linux-arm",
+        "aarch64": ":cc-clang-linux-aarch64",
         "k8": ":cc-clang-linux",
         "darwin": ":cc-clang-darwin",
     },
@@ -51,8 +51,8 @@ cc_toolchain_suite(
 load(":cc_toolchain_config.bzl", "cc_toolchain_config")
 
 cc_toolchain_config(
-    name = "local_linux_arm",
-    cpu = "arm",
+    name = "local_linux_aarch64",
+    cpu = "aarch64",
 )
 
 cc_toolchain_config(
@@ -94,7 +94,7 @@ toolchain(
 )
 
 toolchain(
-    name = "cc-toolchain-linux-arm",
+    name = "cc-toolchain-linux-aarch64",
     exec_compatible_with = [
         "@platforms//cpu:aarch64",
         "@platforms//os:linux",
@@ -109,7 +109,7 @@ toolchain(
 
 load("@com_grail_bazel_toolchain//toolchain:rules.bzl", "conditional_cc_toolchain")
 
-conditional_cc_toolchain("cc-clang-linux-arm", False, %{absolute_paths})
+conditional_cc_toolchain("cc-clang-linux-aarch64", False, %{absolute_paths})
 conditional_cc_toolchain("cc-clang-linux", False, %{absolute_paths})
 conditional_cc_toolchain("cc-clang-darwin", True, %{absolute_paths})
 
